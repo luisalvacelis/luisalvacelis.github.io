@@ -93,7 +93,7 @@ h1, h2, h3 {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: -2;
   background: radial-gradient(
     ellipse 60% 40% at 50% -5%,
     var(--accent-subtle),
@@ -104,6 +104,8 @@ h1, h2, h3 {
 
 /* ===== LAYOUT ===== */
 .section {
+  position: relative;
+  z-index: 1;
   width: min(1100px, 90%);
   margin: 0 auto;
   padding: 8rem 0;
@@ -155,7 +157,8 @@ h1, h2, h3 {
   transition: all 0.2s ease;
 }
 
-.main-nav a:hover {
+.main-nav a:hover,
+.main-nav a.active {
   background: var(--accent-subtle);
   color: var(--accent-hover);
 }
@@ -233,6 +236,11 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ===== HERO LINES ===== */
+.line {
+  display: block;
 }
 
 .lead {
@@ -329,11 +337,12 @@ h1 {
 .contact-card,
 .contact-form,
 .repo-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:hover,
@@ -367,7 +376,11 @@ h1 {
   border: 1px solid var(--chip-border);
   border-radius: var(--radius-md);
   padding: 1.4rem;
-  transition: all var(--transition);
+  transition: all 0.3s ease;
+}
+
+.stats-grid article:hover {
+  background: var(--accent-glow);
 }
 
 .value {
@@ -412,6 +425,43 @@ h1 {
 
 .card {
   padding: 2.4rem;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-btn);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--gradient-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 4px 16px var(--accent-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover .card-icon {
+  transform: scale(1.05);
 }
 
 .card h3 {
@@ -441,7 +491,16 @@ h1 {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--chip-text);
-  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.chips span i {
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
 }
 
 .chips span:hover {
@@ -479,6 +538,7 @@ h1 {
   background: var(--gradient-btn);
   color: #fff;
   border-color: transparent;
+  box-shadow: 0 2px 12px var(--accent-glow);
 }
 
 /* ===== REPO GRID ===== */
@@ -493,6 +553,24 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow: hidden;
+}
+
+.repo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-btn);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.repo-card:hover::before {
+  transform: scaleX(1);
 }
 
 .repo-card h3 {
@@ -530,11 +608,15 @@ h1 {
   color: var(--accent);
   font-weight: 700;
   font-size: 1.35rem;
-  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
 }
 
 .repo-card a:hover {
   color: var(--accent-hover);
+  gap: 0.7rem;
 }
 
 .loading,
@@ -592,7 +674,22 @@ h1 {
   font-weight: 800;
   margin-bottom: 0.6rem;
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
   transition: color var(--transition);
+}
+
+.badge-now {
+  background: var(--gradient-btn);
+  color: #fff;
+  padding: 0.2rem 0.9rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .timeline-item h3 {
@@ -645,7 +742,7 @@ h1 {
   text-decoration: none;
   font-size: 1.4rem;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .contact-card a:hover {
@@ -694,21 +791,53 @@ h1 {
   resize: vertical;
 }
 
-/* ===== REVEAL ANIMATION ===== */
+/* ===== SCROLL REVEAL ===== */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  animation: reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: translateY(32px) translateZ(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
 }
 
-.reveal:nth-child(2) { animation-delay: 0.08s; }
-.reveal:nth-child(3) { animation-delay: 0.16s; }
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
 
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ===== SCROLL TO TOP ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 2.4rem;
+  right: 2.4rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gradient-btn);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 40;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -777,6 +906,7 @@ h1 {
   h1 {
     font-size: clamp(2.8rem, 6vw, 4.2rem);
   }
+
 }
 
 @media (max-width: 480px) {
@@ -791,5 +921,21 @@ h1 {
 
   .repo-grid {
     gap: 1rem;
+  }
+
+  .scroll-top {
+    bottom: 1.6rem;
+    right: 1.6rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

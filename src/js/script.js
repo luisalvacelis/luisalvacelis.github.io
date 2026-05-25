@@ -10,6 +10,7 @@ const activeYearEl = document.getElementById("active-year");
 const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
 const themeToggle = document.getElementById("theme-toggle");
+const scrollTopBtn = document.getElementById("scroll-top");
 const htmlEl = document.documentElement;
 
 let cachedRepos = [];
@@ -27,6 +28,71 @@ themeToggle.addEventListener("click", () => {
 
 const savedTheme = localStorage.getItem("theme") || "dark";
 setTheme(savedTheme);
+
+/* ===== SCROLL REVEAL (IntersectionObserver) ===== */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+
+document.querySelectorAll(".reveal").forEach((el) => {
+  const parent = el.parentElement;
+  const siblings = parent.querySelectorAll(":scope > .reveal");
+  const idx = Array.from(siblings).indexOf(el);
+  el.style.setProperty("--reveal-delay", `${idx * 0.12}s`);
+  revealObserver.observe(el);
+});
+
+/* ===== ACTIVE NAV LINK ===== */
+const navSections = document.querySelectorAll("section[id], footer[id]");
+const navLinks = document.querySelectorAll(".main-nav a");
+
+function updateActiveNav() {
+  let current = "";
+  const scrollY = window.scrollY;
+
+  navSections.forEach((section) => {
+    const top = section.offsetTop - 140;
+    if (scrollY >= top) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
+  });
+}
+
+/* ===== SCROLL TO TOP ===== */
+function updateScrollTop() {
+  scrollTopBtn.classList.toggle("visible", window.scrollY > 500);
+}
+
+scrollTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+let scrollTicking = false;
+window.addEventListener("scroll", () => {
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      updateActiveNav();
+      updateScrollTop();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+});
 
 /* ===== HELPERS ===== */
 function formatDate(isoDate) {
@@ -49,6 +115,30 @@ function getTopLanguage(repos) {
   );
 }
 
+/* ===== ANIMATED COUNTER ===== */
+function animateCount(el, target, duration) {
+  if (isNaN(target)) {
+    el.textContent = String(target);
+    return;
+  }
+
+  duration = duration || 1400;
+  const start = performance.now();
+
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = String(Math.round(target * eased));
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
 function paintStats(repos) {
   const totalStars = repos.reduce(
     (sum, repo) => sum + (repo.stargazers_count || 0),
@@ -57,8 +147,8 @@ function paintStats(repos) {
 
   const lastUpdate = repos[0]?.updated_at;
 
-  totalReposEl.textContent = String(repos.length);
-  totalStarsEl.textContent = String(totalStars);
+  animateCount(totalReposEl, repos.length);
+  animateCount(totalStarsEl, totalStars);
   topLanguageEl.textContent = getTopLanguage(repos);
   activeYearEl.textContent = lastUpdate
     ? String(new Date(lastUpdate).getFullYear())
@@ -86,8 +176,9 @@ function repoTemplate(repo) {
   `;
 }
 
-function renderRepos(filter = "all") {
-  let reposToRender = [...cachedRepos];
+function renderRepos(filter) {
+  filter = filter || "all";
+  let reposToRender = [].concat(cachedRepos);
 
   if (filter === "recent") {
     reposToRender = reposToRender
@@ -152,6 +243,12 @@ document.querySelectorAll(".main-nav a").forEach((link) => {
   link.addEventListener("click", () => {
     mainNav.classList.remove("open");
   });
+});
+
+document.addEventListener("click", (e) => {
+  if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+    mainNav.classList.remove("open");
+  }
 });
 
 fetchRepos();

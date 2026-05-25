@@ -50,9 +50,9 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">DESARROLLADOR &middot; ANALISTA DE DATOS</p>
           <h1>
-            Automatizo lo repetitivo.<br />
-            Visualizo lo invisible.<br />
-            Construyo lo que falta.
+            <span class="line" style="--i:0">Automatizo lo repetitivo.</span>
+            <span class="line" style="--i:1">Visualizo lo invisible.</span>
+            <span class="line" style="--i:2">Construyo lo que falta.</span>
           </h1>
           <p class="lead">
             Combino desarrollo fullstack, automatizaci&oacute;n y
@@ -117,6 +117,7 @@
         </div>
         <div class="proposal-grid">
           <article class="card reveal">
+            <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
             <h3>Automatizaci&oacute;n inteligente</h3>
             <p>
               Dise&ntilde;o flujos con Python y Power Automate para reducir
@@ -125,6 +126,7 @@
             </p>
           </article>
           <article class="card reveal">
+            <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
             <h3>Anal&iacute;tica accionable</h3>
             <p>
               Transformo datos en dashboards y reportes ejecutivos que facilitan
@@ -132,6 +134,7 @@
             </p>
           </article>
           <article class="card reveal">
+            <div class="card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
             <h3>Soluciones a medida</h3>
             <p>
               Construyo aplicaciones y herramientas web/desktop alineadas al
@@ -147,16 +150,16 @@
           <h2>Tecnolog&iacute;as y herramientas</h2>
         </div>
         <div class="chips reveal">
-          <span>JavaScript</span>
-          <span>Python</span>
-          <span>Java</span>
-          <span>PHP</span>
-          <span>SQL</span>
-          <span>GitHub</span>
-          <span>Power BI</span>
-          <span>Excel Avanzado</span>
-          <span>Power Automate</span>
-          <span>HTML + CSS</span>
+          <span><i class="fa-brands fa-js"></i> JavaScript</span>
+          <span><i class="fa-brands fa-python"></i> Python</span>
+          <span><i class="fa-brands fa-java"></i> Java</span>
+          <span><i class="fa-brands fa-php"></i> PHP</span>
+          <span><i class="fa-solid fa-database"></i> SQL</span>
+          <span><i class="fa-brands fa-github"></i> GitHub</span>
+          <span><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+          <span><i class="fa-solid fa-file-excel"></i> Excel Avanzado</span>
+          <span><i class="fa-solid fa-gears"></i> Power Automate</span>
+          <span><i class="fa-brands fa-html5"></i> HTML + CSS</span>
         </div>
       </section>
 
@@ -184,7 +187,7 @@
         </div>
         <div class="timeline">
           <article class="timeline-item reveal">
-            <p class="time">Feb 2024 &mdash; Presente</p>
+            <p class="time">Feb 2024 &mdash; <span class="badge-now">Presente</span></p>
             <h3>Técnico - Automatizador</h3>
             <p class="company">Valtx</p>
             <p>
@@ -263,6 +266,10 @@
         </form>
       </div>
     </footer>
+
+    <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
 
     <script src="src/js/script.js"></script>
   </body>
