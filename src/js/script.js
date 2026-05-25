@@ -9,9 +9,26 @@ const activeYearEl = document.getElementById("active-year");
 
 const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
+const themeToggle = document.getElementById("theme-toggle");
+const htmlEl = document.documentElement;
 
 let cachedRepos = [];
 
+/* ===== THEME ===== */
+function setTheme(theme) {
+  htmlEl.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+}
+
+themeToggle.addEventListener("click", () => {
+  const current = htmlEl.getAttribute("data-theme");
+  setTheme(current === "dark" ? "light" : "dark");
+});
+
+const savedTheme = localStorage.getItem("theme") || "dark";
+setTheme(savedTheme);
+
+/* ===== HELPERS ===== */
 function formatDate(isoDate) {
   return new Intl.DateTimeFormat("es-ES", {
     day: "2-digit",
@@ -48,8 +65,9 @@ function paintStats(repos) {
     : "N/D";
 }
 
+/* ===== REPOS ===== */
 function repoTemplate(repo) {
-  const description = repo.description || "Proyecto en evoluci\u00f3n con enfoque pr\u00e1ctico.";
+  const description = repo.description || "Proyecto en evolución con enfoque práctico.";
   const language = repo.language || "Sin lenguaje definido";
 
   return `
@@ -117,6 +135,7 @@ async function fetchRepos() {
   }
 }
 
+/* ===== EVENTS ===== */
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     filterButtons.forEach((btn) => btn.classList.remove("active"));

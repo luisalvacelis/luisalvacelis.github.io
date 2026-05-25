@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio profesional de Luis Alva Celis, desarrollador y analista de datos enfocado en soluciones digitales de alto impacto."
-    />
+      content="Portfolio profesional de Luis Alva Celis, desarrollador y analista de datos enfocado en soluciones digitales de alto impacto." />
     <title>Luis Alva Celis | Portfolio Profesional</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700;800&display=swap"
-      rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;700;800&display=swap"
+      rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+      referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="src/css/styles.css" />
   </head>
 
@@ -28,9 +25,6 @@
 
     <header class="topbar">
       <a class="brand" href="#inicio">Luis Alva Celis</a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir men&uacute;">
-        <i class="fa-solid fa-bars"></i>
-      </button>
       <nav class="main-nav" id="main-nav">
         <a href="#inicio">Inicio</a>
         <a href="#propuesta">Propuesta</a>
@@ -38,41 +32,53 @@
         <a href="#experiencia">Experiencia</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      <div class="topbar-actions">
+        <button class="theme-toggle" id="theme-toggle"
+          aria-label="Cambiar tema">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle"
+          aria-label="Abrir men&uacute;">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </header>
 
     <main>
       <section class="hero section" id="inicio">
         <div class="hero-copy reveal">
-          <p class="eyebrow">DESARROLLADOR + ANALISTA DE DATOS</p>
+          <p class="eyebrow">DESARROLLADOR &middot; ANALISTA DE DATOS</p>
           <h1>
-            Convierto procesos complejos en productos digitales claros,
-            medibles y escalables.
+            Automatizo lo repetitivo.<br />
+            Visualizo lo invisible.<br />
+            Construyo lo que falta.
           </h1>
           <p class="lead">
-            Combino desarrollo fullstack, automatizaci&oacute;n y anal&iacute;tica para
+            Combino desarrollo fullstack, automatizaci&oacute;n y
+            anal&iacute;tica para
             crear soluciones que ahorran tiempo, mejoran decisiones y generan
             resultados.
           </p>
           <div class="hero-actions">
             <a href="#repositorios" class="btn btn-primary">Ver repositorios</a>
-            <a href="https://wa.me/51902620520" target="_blank" class="btn btn-ghost"
-              >Hablar por WhatsApp</a
-            >
+            <a href="https://wa.me/51902620520" target="_blank"
+              class="btn btn-ghost">Hablar por WhatsApp</a>
           </div>
           <ul class="social-links">
             <li>
-              <a href="https://github.com/luisalvacelis" target="_blank"
-                ><i class="fa-brands fa-github"></i>GitHub</a
+              <a href="https://github.com/luisalvacelis" target="_blank"><i
+                  class="fa-brands fa-github"></i>GitHub</a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/luisalvacelis/" target="_blank"
-                ><i class="fa-brands fa-linkedin"></i>LinkedIn</a
-              >
+              <a href="https://www.linkedin.com/in/luisalvacelis/"
+                target="_blank"><i
+                  class="fa-brands fa-linkedin"></i>LinkedIn</a>
             </li>
             <li>
-              <a href="https://www.instagram.com/luisalvacelis/" target="_blank"
-                ><i class="fa-brands fa-instagram"></i>Instagram</a
-              >
+              <a href="https://www.instagram.com/luisalvacelis/"
+                target="_blank"><i
+                  class="fa-brands fa-instagram"></i>Instagram</a>
             </li>
           </ul>
         </div>
@@ -113,19 +119,20 @@
           <article class="card reveal">
             <h3>Automatizaci&oacute;n inteligente</h3>
             <p>
-              Dise&ntilde;o flujos con Python y Power Automate para reducir tareas
+              Dise&ntilde;o flujos con Python y Power Automate para reducir
+              tareas
               manuales, errores operativos y tiempos de entrega.
             </p>
           </article>
           <article class="card reveal">
-            <h3>Anal&iacute;tica de negocio accionable</h3>
+            <h3>Anal&iacute;tica accionable</h3>
             <p>
               Transformo datos en dashboards y reportes ejecutivos que facilitan
               decisiones con foco en KPIs y productividad.
             </p>
           </article>
           <article class="card reveal">
-            <h3>Desarrollo de soluciones reales</h3>
+            <h3>Soluciones a medida</h3>
             <p>
               Construyo aplicaciones y herramientas web/desktop alineadas al
               flujo operativo de cada cliente o &aacute;rea.
@@ -136,7 +143,7 @@
 
       <section class="section" id="skills">
         <div class="section-heading reveal">
-          <p class="eyebrow">STACK PROFESIONAL</p>
+          <p class="eyebrow">STACK T&Eacute;CNICO</p>
           <h2>Tecnolog&iacute;as y herramientas</h2>
         </div>
         <div class="chips reveal">
@@ -156,12 +163,14 @@
       <section class="section" id="repositorios">
         <div class="section-heading reveal">
           <p class="eyebrow">PORTAFOLIO VIVO</p>
-          <h2>Repositorios destacados desde GitHub</h2>
+          <h2>Repositorios destacados</h2>
         </div>
         <div class="repo-toolbar reveal">
           <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="recent">M&aacute;s recientes</button>
-          <button class="filter-btn" data-filter="starred">M&aacute;s valorados</button>
+          <button class="filter-btn" data-filter="recent">M&aacute;s
+            recientes</button>
+          <button class="filter-btn" data-filter="starred">M&aacute;s
+            valorados</button>
         </div>
         <div class="repo-grid" id="repositories">
           <p class="loading">Cargando repositorios...</p>
@@ -175,8 +184,8 @@
         </div>
         <div class="timeline">
           <article class="timeline-item reveal">
-            <p class="time">2024-02 a actual</p>
-            <h3>Gestor de Base de Datos</h3>
+            <p class="time">Feb 2024 &mdash; Presente</p>
+            <h3>Técnico - Automatizador</h3>
             <p class="company">Valtx</p>
             <p>
               Automatizaci&oacute;n de procesos con Python y Power Automate,
@@ -186,18 +195,19 @@
           </article>
 
           <article class="timeline-item reveal">
-            <p class="time">2021-12 a 2023-12</p>
+            <p class="time">Dic 2021 &mdash; Dic 2023</p>
             <h3>Desarrollador y Analista de Datos</h3>
             <p class="company">JZG Abogados E.I.R.L</p>
             <p>
-              Construcci&oacute;n de indicadores de gesti&oacute;n, seguimiento de
+              Construcci&oacute;n de indicadores de gesti&oacute;n, seguimiento
+              de
               KPIs, automatizaci&oacute;n de tareas masivas y desarrollo de
               herramientas internas de apoyo al negocio.
             </p>
           </article>
 
           <article class="timeline-item reveal">
-            <p class="time">2021-04 a 2021-08</p>
+            <p class="time">Abr 2021 &mdash; Ago 2021</p>
             <h3>Asesor de Ventas</h3>
             <p class="company">Netcall Per&uacute; S.A.C</p>
             <p>
@@ -207,11 +217,12 @@
           </article>
 
           <article class="timeline-item reveal">
-            <p class="time">2021-01 a 2021-03</p>
+            <p class="time">Ene 2021 &mdash; Mar 2021</p>
             <h3>Asesor de Ventas</h3>
             <p class="company">Stratton Per&uacute; S.A.C</p>
             <p>
-              Cumplimiento de objetivos de campa&ntilde;a en ventas telef&oacute;nicas y
+              Cumplimiento de objetivos de campa&ntilde;a en ventas
+              telef&oacute;nicas y
               soporte comercial en promociones de alto volumen.
             </p>
           </article>
@@ -227,32 +238,27 @@
       <div class="contact-grid">
         <div class="contact-card reveal">
           <h3>Canales directos</h3>
-          <a href="mailto:luisalvacelis@gmail.com"
-            ><i class="fa-solid fa-envelope"></i>luisalvacelis@gmail.com</a
-          >
-          <a href="https://wa.me/51902620520" target="_blank"
-            ><i class="fa-brands fa-whatsapp"></i>+51 902 620 520</a
-          >
-          <a href="https://github.com/luisalvacelis" target="_blank"
-            ><i class="fa-brands fa-github"></i>github.com/luisalvacelis</a
-          >
-          <a href="https://www.linkedin.com/in/luisalvacelis/" target="_blank"
-            ><i class="fa-brands fa-linkedin"></i>linkedin.com/in/luisalvacelis</a
-          >
+          <a href="mailto:luisalvacelis@gmail.com"><i
+              class="fa-solid fa-envelope"></i>luisalvacelis@gmail.com</a>
+          <a href="https://wa.me/51902620520" target="_blank"><i
+              class="fa-brands fa-whatsapp"></i>+51 902 620 520</a>
+          <a href="https://github.com/luisalvacelis" target="_blank"><i
+              class="fa-brands fa-github"></i>github.com/luisalvacelis</a>
+          <a href="https://www.linkedin.com/in/luisalvacelis/"
+            target="_blank"><i
+              class="fa-brands fa-linkedin"></i>linkedin.com/in/luisalvacelis</a>
         </div>
         <form
           class="contact-form reveal"
           action="https://formsubmit.co/luisalvacelis@gmail.com"
-          method="POST"
-        >
+          method="POST">
           <input type="text" name="name" placeholder="Tu nombre" required />
           <input type="email" name="email" placeholder="Tu correo" required />
           <textarea
             name="comments"
             rows="4"
             placeholder="Cu&eacute;ntame brevemente qu&eacute; necesitas"
-            required
-          ></textarea>
+            required></textarea>
           <button type="submit" class="btn btn-primary">Enviar mensaje</button>
         </form>
       </div>
